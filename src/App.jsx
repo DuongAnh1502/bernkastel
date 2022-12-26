@@ -1,7 +1,7 @@
 import { NavBar, Hero } from "./components";
 import styles from "./style";
 import { Routes, Route } from "react-router-dom";
-import { Home, SearchPage } from "./pages";
+import { Home, SearchPage, WatchField } from "./pages";
 function App() {
     return (
         <div className='bg-primary w-full overflow-hidden'>
@@ -19,6 +19,10 @@ function App() {
                         <Route
                             path='/searchpage'
                             element={<SearchPage />}
+                        ></Route>
+                        <Route
+                            path='/watch/:animeId'
+                            element={<WatchField />}
                         ></Route>
                     </Routes>
                 </div>

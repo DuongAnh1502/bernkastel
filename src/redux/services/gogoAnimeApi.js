@@ -8,10 +8,25 @@ export const gogoAnimeApi = createApi({
     endpoints: (builder) => ({
         getTopAiringGogoAnime: builder.query({ query: () => "/top-airing" }),
         getRecentUpdatedAnime: builder.query({
-            query: () => "recent-episodes",
+            query: (args) => {
+                const { animeType, page } = args;
+                return {
+                    url: `recent-episodes?page=${page}&type=${animeType}`,
+                };
+            },
+        }),
+        getAnimeInfo: builder.query({
+            query: (animeId) => `/info/${animeId}`,
+        }),
+        getEpisodeLink: builder.query({
+            query: (episodeId) => `/watch/${episodeId}`,
         }),
     }),
 });
 
-export const { useGetTopAiringGogoAnimeQuery, useGetRecentUpdatedAnimeQuery } =
-    gogoAnimeApi;
+export const {
+    useGetTopAiringGogoAnimeQuery,
+    useGetRecentUpdatedAnimeQuery,
+    useGetAnimeInfoQuery,
+    useGetEpisodeLinkQuery,
+} = gogoAnimeApi;

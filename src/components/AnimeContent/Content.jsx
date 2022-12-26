@@ -1,10 +1,9 @@
 import { banner } from "../../assets";
 import TabsBar from "./TabsBar";
 import AnimeCard from "./AnimeCard";
-const Content = ({ recentAnime }) => {
-    console.log(recentAnime);
+const Content = ({ recentAnime, recentAnimeLoading }) => {
     return (
-        <div className='lg:w-3/4 w-full px-4 xl:px-0 xl:mr-4'>
+        <>
             <div className='banner-anime-award'>
                 <img
                     src={banner}
@@ -12,15 +11,19 @@ const Content = ({ recentAnime }) => {
                     className='w-[900px] object-contain'
                 />
             </div>
-            <div className='flex flex-col md:flex-row items-start justify-between md:items-center mt-2'>
+            <div className='flex flex-col md:flex-row items-start justify-between md:items-center my-2'>
                 <TabsBar />
             </div>
-            <div className='anime-cards items-center grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 xl:grid-cols-6 gap-6 gap-y-0'>
-                {recentAnime?.results.map((item, id) => (
-                    <AnimeCard key={item?.id} data={item} id={id} />
-                ))}
+            <div className='anime-cards items-center grid grid-cols-2 ss:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 xl:grid-cols-6 gap-6 gap-y-2'>
+                {recentAnimeLoading ? (
+                    <h1>LOADING...</h1>
+                ) : (
+                    recentAnime?.results.map((item, id) => (
+                        <AnimeCard key={item?.id} data={item} id={id} />
+                    ))
+                )}
             </div>
-        </div>
+        </>
     );
 };
 

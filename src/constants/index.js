@@ -37,7 +37,7 @@ export const tabs = [
     },
     {
         id: 2,
-        title: "Sub",
+        title: "Dub",
     },
     {
         id: 3,
